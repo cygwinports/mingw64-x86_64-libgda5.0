@@ -1,0 +1,40 @@
+CROSS_HOST="x86_64-w64-mingw32"
+ORIG_PN="libgda"
+inherit cross gnome2
+
+NAME="mingw64-x86_64-libgda5.0"
+VERSION=5.1.2
+RELEASE=1
+CATEGORY="Devel"
+SUMMARY="GNOME Data Access libraries for Win64 toolchain"
+DESCRIPTION="GNU Data Access (GDA) is an attempt to provide uniform access to
+different kinds of data sources (databases, information servers, mail spools,
+etc).  It is a complete architecture that provides all you need to access your
+data.  It is defined by a set of plugin APIs as generic as possible (but very
+powerful at the same time) so that any kind of data source can be accessed
+through them."
+REQUIRES="mingw64-x86_64-db"
+HOMEPAGE="http://www.gnome-db.org/"
+
+PATCH_URI="
+	https://git.gnome.org/browse/libgda/patch/tools/browser/canvas/browser-canvas.c?id=a09196d
+	5.1.2-bdb.patch
+"
+
+DIFF_EXCLUDES="libgda.h libgda.types libgda-virtual.h *.pc"
+
+CYGCONF_ARGS="
+	--disable-static
+	--enable-binreloc
+	--disable-gda-gi
+	--disable-gdaui-gi
+	--disable-tools
+	--disable-vala
+	--with-bdb=${CROSS_PREFIX}
+	--without-java
+	--without-ldap
+	--with-mdb
+	--without-mysql
+	--without-oracle
+	--without-postgres
+"
