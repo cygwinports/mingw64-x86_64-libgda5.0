@@ -3,7 +3,7 @@ ORIG_PN="libgda"
 inherit cross gnome2
 
 NAME="mingw64-x86_64-libgda5.0"
-VERSION=5.1.2
+VERSION=5.2.2
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="GNOME Data Access libraries for Win64 toolchain"
@@ -17,8 +17,7 @@ REQUIRES="mingw64-x86_64-db"
 HOMEPAGE="http://www.gnome-db.org/"
 
 PATCH_URI="
-	https://git.gnome.org/browse/libgda/patch/tools/browser/canvas/browser-canvas.c?id=a09196d
-	5.1.2-bdb.patch
+	5.2.2-bdb.patch
 "
 
 DIFF_EXCLUDES="libgda.h libgda.types libgda-virtual.h *.pc"
@@ -36,5 +35,5 @@ CYGCONF_ARGS="
 	--with-mdb
 	--without-mysql
 	--without-oracle
-	--without-postgres
+	--with-postgres=${CROSS_PREFIX}
 "
