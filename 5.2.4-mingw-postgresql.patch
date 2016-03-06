@@ -1,0 +1,11 @@
+--- origsrc/libgda-5.2.4/m4/postgresql.m4	2015-06-13 03:36:25.000000000 -0500
++++ src/libgda-5.2.4/m4/postgresql.m4	2016-03-04 16:24:40.145544000 -0600
+@@ -117,7 +117,7 @@ m4_define([_POSTGRES_CHECK_INTERNAL],
+ 	    then
+ 	        postgres_libext=".so"
+ 	    else
+-	        postgres_libext=".dll"
++	        postgres_libext=".dll.a"
+ 	    fi
+ 	    if test $platform_win32 = yes
+ 	    then

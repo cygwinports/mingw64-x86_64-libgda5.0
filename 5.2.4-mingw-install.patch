@@ -1,0 +1,12 @@
+--- origsrc/libgda-5.2.4/libgda/Makefile.am	2015-06-13 03:36:25.000000000 -0500
++++ src/libgda-5.2.4/libgda/Makefile.am	2016-03-04 16:04:36.260170000 -0600
+@@ -258,9 +258,6 @@ libgda.def: libgda.symbols
+ libgda-$(GDA_ABI_VERSION).lib: libgda.def
+ 	$(DLLTOOL) --dllname libgda-$(GDA_ABI_VERSION)-$(GDA_ABI_MAJOR_VERSION).dll --def libgda.def --output-lib libgda-$(GDA_ABI_VERSION).lib
+ 
+-install-data-local: install-def-files
+-uninstall-local: uninstall-def-files
+-
+ install-def-files: libgda.def libgda-$(GDA_ABI_VERSION).lib
+ 	$(INSTALL) $(builddir)/libgda.def $(DESTDIR)$(libdir)/libgda-$(GDA_ABI_VERSION).def
+ 	$(INSTALL) $(builddir)/libgda-$(GDA_ABI_VERSION).lib $(DESTDIR)$(libdir)/

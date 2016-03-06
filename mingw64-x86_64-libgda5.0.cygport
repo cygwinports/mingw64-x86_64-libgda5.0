@@ -3,7 +3,7 @@ ORIG_PN="libgda"
 inherit cross gnome2
 
 NAME="mingw64-x86_64-libgda5.0"
-VERSION=5.2.2
+VERSION=5.2.4
 RELEASE=1
 CATEGORY="Devel"
 SUMMARY="GNOME Data Access libraries for Win64 toolchain"
@@ -17,7 +17,10 @@ REQUIRES="mingw64-x86_64-db"
 HOMEPAGE="http://www.gnome-db.org/"
 
 PATCH_URI="
-	5.2.2-bdb.patch
+	5.2.4-mingw-bdb.patch
+	5.2.4-mingw-install.patch
+	5.2.4-mingw-mysql.patch
+	5.2.4-mingw-postgresql.patch
 "
 
 DIFF_EXCLUDES="libgda.h libgda.types libgda-virtual.h *.pc"
@@ -29,11 +32,12 @@ CYGCONF_ARGS="
 	--disable-gdaui-gi
 	--disable-tools
 	--disable-vala
+	--with-libdir-name=lib
 	--with-bdb=${CROSS_PREFIX}
 	--without-java
 	--without-ldap
 	--with-mdb
-	--without-mysql
+	--with-mysql=${CROSS_PREFIX}
 	--without-oracle
 	--with-postgres=${CROSS_PREFIX}
 "

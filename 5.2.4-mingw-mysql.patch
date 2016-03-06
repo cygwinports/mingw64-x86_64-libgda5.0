@@ -1,0 +1,37 @@
+--- origsrc/libgda-5.2.4/m4/mysql.m4	2015-06-13 03:36:25.000000000 -0500
++++ src/libgda-5.2.4/m4/mysql.m4	2016-03-04 17:00:30.698629600 -0600
+@@ -117,19 +117,19 @@ m4_define([_MYSQL_CHECK_INTERNAL],
+ 	    then
+ 	        mysql_libext=".so"
+ 	    else
+-	        mysql_libext=".lib"
++	        mysql_libext=".dll.a"
+ 	    fi
+ 	    if test $platform_win32 = yes
+ 	    then
+ 	        for d in $mysql_test_dir
+ 	        do
+ 	            AC_MSG_CHECKING([checking for mysql files in $d])
+-		    if test -a $d/include/mysql.h -a -f $d/$mysql_loclibdir/libmysql$mysql_libext
++		    if test -a $d/include/mysql/mysql.h -a -f $d/$mysql_loclibdir/liblibmysql$mysql_libext
+ 		    then
+ 			save_CFLAGS="$CFLAGS"
+-	                CFLAGS="$CFLAGS -I$d/include"
++	                CFLAGS="$CFLAGS -I$d/include/mysql"
+   	                save_LIBS="$LIBS"
+-	                LIBS="$LIBS -L$d/$mysql_loclibdir -lmysql"
++	                LIBS="$LIBS -L$d/$mysql_loclibdir -llibmysql"
+    	                AC_LINK_IFELSE([AC_LANG_SOURCE([
+ #include <winsock.h>
+ #include <mysql.h>
+@@ -144,8 +144,8 @@ int main() {
+ 			if test "x$mysql_found" = xyes
+ 			then
+ 		            AC_MSG_RESULT([found])
+-			    MYSQL_CFLAGS=-I$d/include
+-			    MYSQL_LIBS="-L$d/$mysql_loclibdir -lmysql"
++			    MYSQL_CFLAGS=-I$d/include/mysql
++			    MYSQL_LIBS="-L$d/$mysql_loclibdir -llibmysql"
+ 			    break
+ 			fi
+ 			AC_MSG_RESULT([files found but are not useable])
